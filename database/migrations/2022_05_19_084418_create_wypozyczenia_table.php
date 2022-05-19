@@ -13,14 +13,17 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('wypozyczenia', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('telefon')->nullable();
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->rememberToken();
+            $table->integer('id_klienta');
+            $table->integer('id_pojazdu');
+            $table->string('kowta_wypozyczenia_dzien');
+            $table->date('data_rozpoczecia');
+            $table->date('data_zakonczenia');
+            $table->boolean('dod_ubezpieczenie');
+            $table->integer('skan_umowy');
+
+
             $table->timestamps();
         });
     }
@@ -32,6 +35,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('wypozyczenia');
     }
 };
